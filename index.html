@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Products Management System</title>
+</head>
+
+<body>
+    <header class="text-bg-dark p-2 container-fluid fixed-top">
+        <nav>
+            <ul class="list-unstyled d-flex justify-content-between align-items-center m-0">
+                <li>
+                    <h1 class="h5 m-0">Products Management System</h1>
+                </li>
+                <li>
+                    <button class="btn btn-primary" data-bs-target="#modal" data-bs-toggle="modal">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add Product</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="modal fade p-0" id="modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" id="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Product Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div>
+                            <div class="mb-3">
+                                <input class="form-control" type="text" placeholder="Product Title" id="title">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="number" placeholder="Price" id="price" >
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="number" placeholder="Taxes" id="taxes" >
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="number" placeholder="Ads" id="ads" >
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="number" placeholder="Discount" id="discount" >
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="number" placeholder="Count" id="count">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="text" placeholder="Category" id="category">
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mb-3">
+                                    <span id="total" class="text-bg-danger  p-2 rounded-2"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <button id="addProduct" class="btn btn-outline-dark" type="button">Add Product</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="container px-5 text-center " style="margin-top: 4rem !important;">
+        <div class="my-3">
+            <input oninput="searchData(this.value)" class="form-control d-none" type="text" id="search" placeholder="Search">
+        </div>
+        <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
+            <button onclick="getSearchMood(this.id)" id="searchTitle" class="btn btn-dark w-100">Serch By Title</button>
+            <button onclick="getSearchMood(this.id)" id="searchCategory" class="btn btn-dark w-100">Serch By Category</button>
+        </div>
+        <div id="deleteAll" class=" d-flex justify-content-center my-3">
+
+        </div>
+        <table  class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Taxes</th>
+                    <th scope="col">Ads</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </table>
+    </section>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
