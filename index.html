@@ -11,16 +11,16 @@
 </head>
 
 <body>
-    <header class="text-bg-dark p-2 container-fluid fixed-top">
+    <header class="text-bg-primary p-2 container-fluid fixed-top">
         <nav>
             <ul class="list-unstyled d-flex justify-content-between align-items-center m-0">
                 <li>
-                    <h1 class="h5 m-0">Products Management System</h1>
+                    <h1 class="h5 m-0 fw-bold">Products Management System</h1>
                 </li>
                 <li>
-                    <button class="btn btn-primary" data-bs-target="#modal" data-bs-toggle="modal">
-                        <i class="fa-solid fa-plus"></i>
+                    <button class="btn btn-outline-light fw-semibold" data-bs-target="#modal" data-bs-toggle="modal">
                         <span>Add Product</span>
+                        <i class="fa-solid fa-plus"></i>
                     </button>
                 </li>
             </ul>
@@ -41,16 +41,16 @@
                                 <input class="form-control" type="text" placeholder="Product Title" id="title">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="number" placeholder="Price" id="price" >
+                                <input class="form-control" type="number" placeholder="Price" id="price">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="number" placeholder="Taxes" id="taxes" >
+                                <input class="form-control" type="number" placeholder="Taxes" id="taxes">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="number" placeholder="Ads" id="ads" >
+                                <input class="form-control" type="number" placeholder="Ads" id="ads">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="number" placeholder="Discount" id="discount" >
+                                <input class="form-control" type="number" placeholder="Discount" id="discount">
                             </div>
                             <div class="mb-3">
                                 <input class="form-control" type="number" placeholder="Count" id="count">
@@ -63,7 +63,8 @@
                                     <span id="total" class="text-bg-danger  p-2 rounded-2"></span>
                                 </div>
                                 <div class="mb-3">
-                                    <button id="addProduct" class="btn btn-outline-dark" type="button">Add Product</button>
+                                    <button id="addProduct" class="btn btn-outline-dark" type="button">Add
+                                        Product</button>
                                 </div>
                             </div>
                         </div>
@@ -72,19 +73,21 @@
             </div>
         </div>
     </div>
-    
-    <section class="container px-5 text-center " style="margin-top: 4rem !important;">
+
+    <section class="container px-5 text-center content">
         <div class="my-3">
-            <input oninput="searchData(this.value)" class="form-control d-none" type="text" id="search" placeholder="Search">
+            <input oninput="searchData(this.value)" class="form-control d-none" type="text" id="search"
+                placeholder="Search">
         </div>
         <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
-            <button onclick="getSearchMood(this.id)" id="searchTitle" class="btn btn-dark w-100">Serch By Title</button>
-            <button onclick="getSearchMood(this.id)" id="searchCategory" class="btn btn-dark w-100">Serch By Category</button>
+            <button onclick="getSearchMood(this.id)" id="searchTitle" class="btn btn-outline-dark fw-semibold w-100">Serch By Title</button>
+            <button onclick="getSearchMood(this.id)" id="searchCategory" class="btn btn-outline-dark fw-semibold w-100">Serch By
+                Category</button>
         </div>
         <div id="deleteAll" class=" d-flex justify-content-center my-3">
 
         </div>
-        <table  class="table">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -100,10 +103,20 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-                
+
             </tbody>
         </table>
     </section>
+    <div class="connection vh-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="w-50">
+                <img class="w-100" src="./offline-5.png" alt="offline-img">
+            </div>
+            <h2 class="connection-title fw-bold">You are currently offline.</h2>
+            <p class="text-danger fw-semibold">Internet connection is lost. Try checking the signal and refresh the page</p>
+            <button class="reload btn btn-outline-secondary fw-semibold">Refresh</button>
+        </div>
+    </div>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/main.js"></script>
 </body>

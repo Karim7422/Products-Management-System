@@ -1,3 +1,9 @@
 #total::before{
     content: "Total Price: ";
 }
+.table{
+    vertical-align: middle;
+}
+.container{
+    margin-top: 5rem;
+}

@@ -1,19 +1,42 @@
+const btnAddProduct = document.querySelector("header button ")
+const content = document.querySelector("section.content")
 const title = document.getElementById("title");
-
 const price = document.getElementById("price");
 const taxes = document.getElementById("taxes");
 const ads = document.getElementById("ads");
 const discount = document.getElementById("discount");
-
 const count = document.getElementById("count");
 const category = document.getElementById("category");
 const total = document.getElementById("total");
 const addProduct = document.getElementById("addProduct");
 const deleteAll = document.getElementById('deleteAll')
 const modal = document.getElementById('')
+const connection = document.querySelector(".connection")
+const reloadBtn = document.querySelector(".reload")
 let tbody = document.getElementById('tbody')
 let mood = "create"
 let tmp;
+
+// Connection Functions
+function offLine() {
+    connection.classList.add("d-flex")
+    btnAddProduct.classList.add("d-none")
+    content.classList.add("d-none")
+}
+function onLine() {
+    connection.classList.add("d-none")
+}
+window.addEventListener("load", () => {
+    window.navigator.onLine ? onLine() : offLine()
+})
+reloadBtn.addEventListener("click", () => {
+    window.location.reload()
+})
+window.addEventListener("offline", () => {
+    connection.classList.remove("d-none")
+    offLine()
+})
+
 // Get Total Price 
 total.innerHTML = 0;
 function getTotal() {
@@ -48,7 +71,7 @@ addProduct.addEventListener('click', () => {
         total: total.innerHTML,
     }
     if (mood === "create") {
-        
+
         if (newProduct.count > 1) {
             for (let i = 0; i < newProduct.count; i++) {
                 data.push(newProduct)
@@ -61,7 +84,7 @@ addProduct.addEventListener('click', () => {
         mood = "create"
         addProduct.innerHTML = "Add Product"
         count.style.display = "block"
-        
+
     }
     localStorage.setItem("Product", JSON.stringify(data))
     clearData()
@@ -80,31 +103,29 @@ function clearData() {
     total.innerHTML = ""
     total.classList.remove("text-bg-success")
     total.classList.add("text-bg-danger")
-    
 }
-
 
 // Display Data 
 function displayData() {
     let table = ""
-    for (let i = 0; i < data.length; i++) {
+    data.map((el, i) => {
         table += `
     <tr>
         <th scope="row">${i + 1}</th>
-        <td>${data[i].title}</td>
-        <td>${data[i].price}</td>
-        <td>${data[i].taxes}</td>
-        <td>${data[i].ads}</td>
-        <td>${data[i].discount}</td>
-        <td>${data[i].total}</td>
-        <td>${data[i].category}</td>
+        <td class="fw-semibold">${el.title}</td>
+        <td class="fw-semibold">${el.price}</td>
+        <td class="fw-semibold">${el.taxes}</td>
+        <td class="fw-semibold">${el.ads}</td>
+        <td class="fw-semibold">${el.discount}</td>
+        <td class="fw-semibold">${el.total}</td>
+        <td class="fw-semibold">${el.category}</td>
         <td><button onclick="updateProduct(${i})"data-bs-target="#modal" data-bs-toggle="modal" id="update" class="btn btn-outline-secondary"><i class="fa-solid fa-pen"></i></button></td>
         <td><button onclick="deleteProduct(${i})" id="delete" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i></button></td>
     </tr>
     `
-    }
+    })
     tbody.innerHTML = table
-    data.length ? deleteAll.innerHTML = ` <button onclick="deleteAllProducts()" class="btn btn-dark">Delete All Products (${data.length})</button>` : deleteAll.innerHTML = ""
+    data.length ? deleteAll.innerHTML = ` <button onclick="deleteAllProducts()" class="btn btn-outline-danger fw-semibold">Delete All Products</button>` : deleteAll.innerHTML = ""
 }
 displayData()
 
@@ -144,21 +165,20 @@ function getSearchMood(id) {
         search.classList.remove("d-none")
         searchMood = "title"
         search.placeholder = "Search By Title"
-    } else if(id === "searchCategory") {
+    } else if (id === "searchCategory") {
         search.classList.remove("d-none")
         searchMood = "category"
         search.placeholder = "Search By Category"
     }
     search.focus()
-    search.value=""
+    search.value = ""
     displayData()
 }
 
 function searchData(value) {
-    let table =""
+    let table = ""
     if (searchMood === "title") {
-        
-        for (let i = 0; i<data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             if (data[i].title.toLowerCase().includes(value.toLowerCase())) {
                 table += `
                 <tr>
@@ -176,9 +196,8 @@ function searchData(value) {
                 `
             }
         }
-
     } else {
-        for (let i = 0; i<data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             if (data[i].category.toLowerCase().includes(value.toLowerCase())) {
                 table += `
                 <tr>
